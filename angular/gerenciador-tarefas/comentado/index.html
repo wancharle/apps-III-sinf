@@ -1,0 +1,47 @@
+<!doctype html>
+     <!-- ng-app habilita o angular e
+     o carregamento automático da biblioteca tarefasApp -->
+    <html ng-app="tarefasApp">
+      <head>
+        <script src="angular.min.js"></script>
+        <script src="tarefas.js"></script>
+        <link rel="stylesheet" href="todo.css">
+      </head>
+      <body>
+        <h2>Tarefas</h2>
+
+        <!-- ng-controller habilita o controller ControladorListaTarefa
+        em todos os nos filhos do div/elemento em que tag foi inserida -->
+        <div ng-controller="ControladorListaTarefa as controlador">
+
+          <span>{{controlador.restantes()}} de {{controlador.tarefas.length}} restantes</span>
+
+          [ <a href="" ng-click="controlador.arquiva()">arquivar</a> ]
+
+          <ul class="unstyled">
+            <!-- ng-repeat estrutura de repetição similar a um for de C/Java, pois
+               ele repete tudo que esta dentro da tag HTML em que foi adicionado
+               incluido a própria tag.
+            -->
+            <li ng-repeat="tarefa in controlador.tarefas">
+              <label class="checkbox">
+                <!-- ng-model amarra o valor do checkbox com a propripedade "feita" da tarefa.
+                Assim se  propriedade tem valor true o checkbox aparece marcado. -->
+                <input type="checkbox" ng-model="tarefa.feita">
+                <!-- truque com css para deixar o texto riscado se a tarefa foi feita -->
+                <span class="done-{{tarefa.feita}}">{{tarefa.texto}}</span>
+              </label>
+            </li>
+          </ul>
+
+          <!-- ng-submit diz para o form chamar o metodo adicionarTarefa do controlador
+            toda vez que o usuário enviar o form.
+          -->
+          <form ng-submit="controlador.adicionaTarefa()">
+            <!-- ng-model "amarra" o valor da caixa de texto com a variável "textoTarefa" do controlador -->
+            <input type="text" ng-model="controlador.textoTarefa"  size="30" placeholder="adicione nova tarefa">
+            <input type="submit" value="adicionar">
+          </form>
+        </div>
+      </body>
+</html>
