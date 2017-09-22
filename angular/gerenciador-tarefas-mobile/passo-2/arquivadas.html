@@ -1,0 +1,22 @@
+<div ui-content-for="title">
+  <span>Tarefas Arquivadas</span>
+</div>
+
+
+<div class="scrollable">
+  <div class="scrollable-header alert alert-info">
+	Arraste para apagar
+  </div>
+  <div class="scrollable-content">
+    <div class="container-fluid">
+      <div class="notices-container">
+        <div ng-repeat="tarefa in controlador.tarefasArquivadas"
+          drag-to-dismiss="controlador.deleteTarefa(tarefa)"
+          class="section section-break">
+          <i class="fa fa-check-o"></i> {{tarefa.texto}}
+        </div>
+      </div>
+    </div>
+    <br/>
+  </div>
+</div>
