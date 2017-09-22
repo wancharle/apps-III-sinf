@@ -1,0 +1,74 @@
+<div ui-content-for="title">
+  <span>Comparador</span>
+</div>
+
+<div class="scrollable">
+ <div class="scrollable-content section">
+   
+  <form class="form-inline" role="form" ng-submit='comparar()'>
+    <fieldset>
+      <legend>Comparar</legend>
+  	<div class="row">
+	    <div class="col-xs-4">
+		<div class=" form-group has-success has-feedback">
+		  <input type="text"
+			 ng-model="qtd1"
+			 class="form-control"
+			 placeholder="Quantidade">
+		</div>
+	    </div>
+	    <div class="col-xs-4">
+		<div class="form-group has-success has-feedback">
+		  <input type="text" 
+			 class="form-control"
+			 placeholder="Preço">
+       		</div>
+	    </div>
+	    <div class="col-xs-4">
+		<div class="form-group has-success has-feedback">
+		  <input type="text" readonly 
+			 class="form-control"
+			 placeholder="Preço/QTD">
+       		</div>
+	    </div>
+
+	</div>	
+      	<div class="row">
+	    <div class="col-xs-4">
+		<div class=" form-group has-success has-feedback">
+		  <input type="text"
+			 ng-model="qtd1"
+			 class="form-control"
+			 placeholder="Quantidade">
+		</div>
+	    </div>
+	    <div class="col-xs-4">
+		<div class="form-group has-success has-feedback">
+		  <input type="text" 
+			 class="form-control"
+			 placeholder="Preço">
+       		</div>
+	    </div>
+	    <div class="col-xs-4">
+		<div class="form-group has-success has-feedback">
+		  <input type="text" readonly 
+			 class="form-control"
+			 placeholder="Preço/QTD">
+       		</div>
+	    </div>
+
+	</div>
+    </fieldset>
+    <hr>
+
+    <button class="btn btn-primary btn-block">
+      comparar
+    </button>
+
+    <div ui-content-for="navbarAction">
+      <a class="btn" ng-click="comparar()">Comparar</a>
+    </div>
+
+  </form>
+ </div>
+</div>
