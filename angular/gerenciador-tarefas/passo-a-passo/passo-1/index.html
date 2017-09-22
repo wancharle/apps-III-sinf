@@ -1,0 +1,35 @@
+<!doctype html>
+    <html>
+      <head>
+        <link rel="stylesheet" href="todo.css">
+      </head>
+      <body>
+        <h2>Tarefas</h2>
+        <div>
+
+          <span>{{controlador.restantes()}} de {{controlador.tarefas.length}} restantes</span>
+
+          [ <a href="" >arquivar</a> ]
+
+          <ul class="unstyled">
+            <li>  
+              <label class="checkbox">
+                <input type="checkbox" checked >
+                <span class="done-true">{{tarefa.texto}}</span>
+              </label>
+            </li>
+            <li>  
+              <label class="checkbox">
+                <input type="checkbox" >
+                <span class="done-false">{{tarefa.texto}}</span>
+              </label>
+            </li>
+          </ul>
+
+          <form>
+            <input type="text" placeholder="adicione nova tarefa">
+            <input type="submit" value="adicionar">
+          </form>
+        </div>
+      </body>
+</html>
