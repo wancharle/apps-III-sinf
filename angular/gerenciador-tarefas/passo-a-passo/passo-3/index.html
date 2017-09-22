@@ -1,0 +1,32 @@
+<!doctype html>
+    <html ng-app="tarefasApp">
+      <head>
+        <script src="angular.min.js"></script>
+        <script src="tarefas.js"></script>
+        <link rel="stylesheet" href="todo.css">
+      </head>
+      <body>
+        <h2>Tarefas</h2>
+        <div ng-controller="ControladorListaTarefa as controlador">
+
+          <span>{{controlador.restantes()}} de {{controlador.tarefas.length}} restantes</span>
+
+          [ <a href="" >arquivar</a> ]
+
+          <ul class="unstyled">
+            <li ng-repeat="tarefa in controlador.tarefas">
+              <label class="checkbox">
+                <input type="checkbox" ng-model="tarefa.feita">
+                <span class="done-{{tarefa.feita}}">{{tarefa.texto}}</span>
+              </label>
+            </li>
+          </ul>
+
+          <form ng-submit="controlador.adicionaTarefa()">
+            <!-- ng-model "amarra" o valor da caixa de texto com a variável "textoTarefa" do controlador -->
+            <input type="text" ng-model="controlador.textoTarefa"  size="30" placeholder="adicione nova tarefa">
+            <input type="submit" value="adicionar">
+          </form>
+        </div>
+      </body>
+</html>
