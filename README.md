@@ -31,7 +31,7 @@ O cordova permite o desenvolvimento de apps com varias plataformas(Android,Black
 
 Para adicionar uma plataforma de desenvolvimento para o seu projeto digite o comando `cordova platform add <nome da plataforma>`.
 
-Por exemplo, para adiiconar a plataforma android execute o seguinte comanndo "dentro da pasta" do seu projeto:
+Por exemplo, para adiiconar a plataforma android execute o seguinte comando "dentro da pasta" do seu projeto:
 ```bash
 $ cordova platform add android
 ```
@@ -45,13 +45,18 @@ Se o comando exibir alguma mensagem de erro em cor vermelha ou amarela, signific
 
 Para instalar ela corretamente execute os procedimentos para instalar os componentes da sua plataforma conforme a documentação do Apache Cordova explica nesse site https://cordova.apache.org/docs/en/latest/guide/platforms/android/index.html. 
 
-# Compile o seu aplicativo
+No minicurso utilizamos a plataforma Android e instalamos os componentes Java e android home com os seguintes comandos:
+
+```bash
+$ sudo apt install gradle default-jdk adb 
+```
+## Compile e rode o seu aplicativo
 
 Para compilar o seu aplicativo basta executar o comando abaixo:
 ```bash
 $ cordova build
 ```
-## Instale o seu aplicativo no seu smartphone
+### Instale o seu aplicativo no seu smartphone
 
 Para instalar o aplicativo no seu smarphone primeiro habilite seu smartphone no modo desenvolvedor e a depuração usb:
 
@@ -74,3 +79,16 @@ Caso não consiga enviar o aplicativo para o seu smartphone, verifique se o seu 
 $ adb devices 
 ```
 No linux para instalar o comando adb basta executa o comando `sudo apt install adb`. Se vc estiver usando windows veja como usar o adb seguindo as informaçoes desse site (https://pplware.sapo.pt/smartphones-tablets/android/como-usar-o-android-debug-bridge-adb/).
+
+## Links Úteis
+
+Abaixo segue alguns sites úteis que podem ajudar no desenvolvimento de aplicativos com Apache Cordova:
+1. Documentação Oficial do Apache Cordova: https://cordova.apache.org
+2. Documentação da plataforma Android(onde vc pode baixar o android studio o platform tools pra instalar o android-home): https://developer.android.com/studio/index.html
+3. Site do framework Angular.js: https://angularjs.org
+4. Site do framework Angular Mobile UI: http://mobileangularui.com
+5. Site de tutorias sobre programação web: https://www.w3schools.com
+6. Canal do youtube com curso sobre programação web para iniciantes: https://www.youtube.com/watch?v=iZ1ucWosOww
+
+
+
