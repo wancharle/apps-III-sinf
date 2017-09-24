@@ -1,4 +1,4 @@
-# apps-III-sinf
+# Apps-III-sinf
 Códigos utilizados no mini-curso de desenvolvimento mobile do III Seminário de Informática do IFES campus Cachoeiro de Itapemirimim.
 
 ## Instalação do Apache Cordova 
@@ -50,13 +50,13 @@ No minicurso utilizamos a plataforma Android e instalamos os componentes Java e 
 ```bash
 $ sudo apt install gradle default-jdk adb 
 ```
-## Compile e rode o seu aplicativo
+## Compile o seu aplicativo
 
 Para compilar o seu aplicativo basta executar o comando abaixo:
 ```bash
 $ cordova build
 ```
-### Instale o seu aplicativo no seu smartphone
+## Instale o seu aplicativo no seu smartphone
 
 Para instalar o aplicativo no seu smarphone primeiro habilite seu smartphone no modo desenvolvedor e a depuração usb:
 
@@ -80,7 +80,7 @@ $ adb devices
 ```
 No linux para instalar o comando adb basta executa o comando `sudo apt install adb`. Se vc estiver usando windows veja como usar o adb seguindo as informaçoes desse site (https://pplware.sapo.pt/smartphones-tablets/android/como-usar-o-android-debug-bridge-adb/).
 
-## Links Úteis
+## Sites Úteis
 
 Abaixo segue alguns sites úteis que podem ajudar no desenvolvimento de aplicativos com Apache Cordova:
 1. Documentação Oficial do Apache Cordova: https://cordova.apache.org
