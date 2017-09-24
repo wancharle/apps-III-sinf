@@ -1,5 +1,5 @@
 # Apps-III-sinf
-Códigos utilizados no mini-curso de desenvolvimento mobile do III Seminário de Informática do IFES campus Cachoeiro de Itapemirimim.
+Códigos utilizados no mini-curso de desenvolvimento mobile do III Seminário de Informática do IFES campus Cachoeiro de Itapemirim.
 
 ## Instalação do Apache Cordova 
 
