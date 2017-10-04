@@ -4,55 +4,36 @@
 * @version 1.0
 */
 
-//window.onload = init;
 var stage;
 var bricks = new Array();
 var colors = ['rgb(255,0,0)','rgb(0,255,0)','rgb(0,0,255)','rgb(255,255,0)']
 var STAGE_WIDTH = 500;
 var STAGE_HEIGHT = 700;
-var mouseX = 0;
-var mouseY = 0;
-var paddle = new Paddle(200,650,100,20);
+var paddle = new Paddle(200,650,200,20);
 var loopInterval = setInterval(loop,1000/30);
 var ball = new Ball(150,200,10);
 var gameState;
 var posix = 200;
 var geo = 0;
-function onSuccess(heading) {
-    posix = 250-25*heading.x
-    geo =JSON.stringfy(heading);
-};
 
-function onError(compassError) {
-    alert('Compass error: ' + compassError.code);
-};
-
-var options = {
-    frequency: 300
-}; // Update every 3 seconds
-
-
-function init(){
+function breakout_main(){
 	gameState = "loading";
 	// events
-	window.onmousemove = function(event){onMouseMoveHandler(event);}
-
-
- watchID = navigator.accelerometer.watchAcceleration(onSuccess, onError, options);
+    monitoraAcelerometro();
 	initCanvas();
 	drawBoard(30);
 	gameState = "play";
 }
-function restart(){
 
+function restart(){
 	loopInterval = setInterval(loop,1000/30);
 	ball.x=150
 	ball.y=200
-
 	bricks = new Array();
 	drawBoard(30);
 	gameState = "play";
 }
+
 function loop(){
 	draw();
 	hitTest();
@@ -84,7 +65,6 @@ function gameStateManager(){
 
 		case "lose":
 		pause();
-		alert(posix+"\n"+geo);
 		restart();
 		
 		break;
@@ -154,6 +134,9 @@ function hitTest(){
 			ball.hit();
 			console.log("hit");
 			removeBrick(i);
+
+			navigator.vibrate(50);
+			
 		}
 	}
 
@@ -204,27 +187,7 @@ function updateBricks(){
 function clearStage(){
 	stage.clearRect(0,0,STAGE_WIDTH,STAGE_HEIGHT);
 }
-/**
-* Mouse Methods
-*/
-function getMousePosition(evt){
-	var e = new MouseEvent(evt);
-	var rect = canvas.getBoundingClientRect();
-	mouseX = e.x - rect.left;
-	mouseY = e.y;
-}
-function onMouseMoveHandler(evt){
-	getMousePosition(evt);
-}
-/**
-* MouseEvent Class
-* Creates a global reference to the mouse position via mouseX and mouseY
-*/
-function MouseEvent(e){
-	e?this.e=e:this.e=window.event;
-	e.pageX?this.x=e.pageX:this.x=e.clientX;
-	e.pageY?this.y=e.pageY:this.y=e.clientY;
-}
+
 /**
 * Brick Class
 */
@@ -251,12 +214,18 @@ function Paddle(x,y,width,height){
 	this.color = 'rgb(100,100,100)';
 
 	this.update = function(){
+        // move a posição da barra de acordo com a aceleraçao do aparelho
+		posix = posix - aceleracao_x
+	    if (posix < 0){aceleracao_x=0; posix=0;}
+	    if (posix > 470) {aceleracao_x=0;posix=470;}
+ 
 		this.x = posix;
 		stage.fillStyle = this.color;
 		stage.fillRect(this.x-this.width*.5,this.y,this.width,this.height);
 	}
 	// Logic for ball x direction on paddle hit test with ball
 	this.hit = function(){
+		window.sons.beep.play()
 		var dist = (this.x+this.width)-this.x;
 		var total = ball.radius*2+paddle.width;
 		var hitpoint = (ball.x+ball.radius)-(paddle.x-paddle.width*.5)
@@ -269,6 +238,7 @@ function Paddle(x,y,width,height){
 			ball.vx= ball.vy * .10;
 		}else if(percent>=.43 && percent <=.55){
 			ball.vx= ball.vy * -.10;
+       
 		}else if(percent >= .25 && percent <= .44){
 			ball.vx= ball.vy * .25;
 		}else if(percent >= .56 && percent <= .75){

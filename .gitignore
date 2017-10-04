@@ -1,4 +1,7 @@
 **/platforms/
 **/node_modules/
 **/*.swp
+**/*.swo
 **/plugins
+**/npm-debug.log
+.DS_Store
