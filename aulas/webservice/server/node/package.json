@@ -1,0 +1,17 @@
+{
+  "name": "webservice",
+  "version": "1.0.0",
+  "description": "um exemplo de webservice em node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "webservice"
+  ],
+  "author": "wancharle",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}
