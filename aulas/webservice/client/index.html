@@ -1,0 +1,36 @@
+<html>
+<!DOCTYPE html>
+<html>
+<script src="angular.min.js"></script>
+<body>
+
+<div ng-app="meuApp" ng-controller="meuControlador">
+<h1>Testando webserivce</h1>
+<p>{{respostaDoWebservice}}</p>
+</div>
+<script>
+var app = angular.module('meuApp', []);
+
+
+
+function controlador($scope, $location, $http) {
+    $scope.respostaDoWebservice = $location.absUrl();
+    
+    function sucesso(response) {
+        $scope.respostaDoWebservice = response.data;
+    }
+    function erro(response,status) {
+        $scope.respostaDoWebservice = "Erro ao acessar webservice:" + response.statusText + status;
+    }
+
+    $http.get("http://127.0.0.1:3000/").then(sucesso,erro);
+}
+
+app.controller('meuControlador',controlador);
+</script>
+
+</body>
+</html>
+
+
+<html>
