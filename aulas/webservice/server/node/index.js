@@ -10,9 +10,9 @@ function liberaAcesso(res){
 
 function paginaInicial(req, res) {
       liberaAcesso(res)
-      res.send('Olá mundo!')
+      res.send('Olá mundo javascript!')
 }
 
-app.get('/',paginaInicial); //configura a url "/" da pagina inicial do webservice
+app.get('/',paginaInicial); 
 
 app.listen(3000)
