@@ -1,7 +1,7 @@
 
 # Criando um cliente para o webservice
 
-Para acessar nosso webservice só precisamos de uma pagina web que utilize o servico $http do angular para obter os dados do webservice.
+Para acessar nosso webservice só precisamos de uma pagina web. Essa página utiliza o servico $http do AngularJS para obter os dados do webservice.
 
 O código da página  de acesso do webservice é o seguinte:
 ```HTML
@@ -36,12 +36,12 @@ O código da página  de acesso do webservice é o seguinte:
 </html>
 ```
 
-Utilizamos o seguinte trecho do codigo acima para acessar o webservice:
+Utilizamos o seguinte trecho do código acima para acessar o webservice:
 ```javascript 
 $http.get("http://127.0.0.1:3000/").then(sucesso,erro);
 ```
 
-Observe que para utilizar o servico $http do angular tivemos que importar esse servico. Isso foi feito no seguinte trecho:
+Observe que para utilizar o servico $http do AngularJS tivemos que importar esse servico. Isso foi feito no seguinte trecho, onde acrescentamos o parâmetro $http a função do nosso controlador:
 ```javascript 
      function controlador($scope, $http) {
 ```
