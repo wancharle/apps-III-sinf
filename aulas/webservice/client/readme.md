@@ -3,7 +3,7 @@
 
 Para acessar nosso webservice só precisamos de uma pagina web que utilize o servico $http do angular para obter os dados do webservice.
 
-O código pagina o de acesso do webservice é o seguinte:
+O código da página  de acesso do webservice é o seguinte:
 ```HTML
 <!DOCTYPE html>
 <html>
