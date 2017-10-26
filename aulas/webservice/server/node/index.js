@@ -10,7 +10,7 @@ function liberaAcesso(res){
 
 function paginaInicial(req, res) {
       liberaAcesso(res)
-      res.send('Olá mundo javascript!')
+      res.send('Olá Mundo Javascript!')
 }
 
 app.get('/',paginaInicial); 
