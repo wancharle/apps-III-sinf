@@ -3,7 +3,8 @@
 
 Para acessar nosso webservice só precisamos de uma pagina web. Essa página utiliza o servico $http do AngularJS para obter os dados do webservice.
 
-O código da página  de acesso do webservice é o seguinte:
+Assim sendo, crie uma pagina web chamada index.html com o seguinte código:
+
 ```HTML
 <!DOCTYPE html>
 <html>
@@ -48,7 +49,7 @@ Observe que para utilizar o servico $http do AngularJS tivemos que importar esse
 
 
 
-## Testando o Webservice
+# Testando o Webservice
 
 Primeiro levante o servidor web de sua preferência: [node.js](../server/node/) ou [java servlets](../server/java).
 
@@ -56,15 +57,16 @@ Primeiro levante o servidor web de sua preferência: [node.js](../server/node/) 
 Agora abra o arquivo [index.html](index.html) no navegador de sua preferência.
 
 
+## Testando com servidor java
 Se vc levantou o servidor java terá a seguinte resposta no navegador:
 
 ![java](screenshot-java.png)
 
-
+## Testando com servidor javascript
 Se vc levantou o servidor javascript terá a seguinte resposta no navegador:
 ![javascript](screenshot-node.png)
 
-
+## Erro ao testar
 Mas se vc não conseguir levantar o servidor web ou acontecer algum problema de firewall/proxy, terá a seguinte mensagen:
 ![java](screenshot-erro.png)
 
