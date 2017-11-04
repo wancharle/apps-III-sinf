@@ -27,7 +27,7 @@ node crud.js
 
 Um outra versão, que não utiliza o padrão [Promessas](https://www.promisejs.org), pode ser executada com o seguinte comando:
 ```bash
-$ node crud-sem-promessas.js
+node crud-sem-promessas.js
 ```
 
 A diferença entre essas versões está apenas na forma que o código é escrito. Mas observe que  é recomendável  em programação não bloqueante e assíncrona o uso de promessas para evitar o [Callback Hell](http://callbackhell.com).
