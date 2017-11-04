@@ -2,9 +2,9 @@
 var MongoClient = require('mongodb').MongoClient
 
 // função para facilitar a abertura do banco nosql
+// ela cria uma 'Promessa' que é um padrão que ajuda no desenvolvimento assincrono e evita o "Callback hell"
 function openNOSQLdb(nomeDoBanco){
 	var urlBanco = 'mongodb://localhost/'+nomeDoBanco;
-	// cria uma 'Promessa' que é um padrão que ajuda no desenvolvimento assincrono e evita o "Callback hell"
     return new Promise(function(resolve, reject){
         MongoClient.connect(urlBanco, function(err, db){
             if (err) {
@@ -15,8 +15,6 @@ function openNOSQLdb(nomeDoBanco){
         })
     })
 }
-
-
 var banco = null;
 var colecaoUsuarios = null;
 
@@ -30,9 +28,7 @@ openNOSQLdb("bancoteste")
 		// observe que não foi necessario definir a estrutura de campos/colunas da coleção como
 		// seria necessário para uma tabela de um banco sql
 		colecaoUsuarios = db.collection('usuarios')
-		return colecaoUsuarios 
-	})
-	.then(function (colecaoUsuarios){
+
 		// cria uma lista com dados de  10 usuarios de exemplo
 		var listaDeUsuarios = []
 		for (var i = 1; i <= 10; i++) {
@@ -40,7 +36,6 @@ openNOSQLdb("bancoteste")
 			 var horario= data.toLocaleTimeString();
 			 listaDeUsuarios.push({id:i,horario:horario})
 		}
-
 		// insere os usuarios no banco atraves do metodo insertMany (que insere mais de um registro de uma vez)
 		// para inserir apenas um registro use a função insertOne em vez da insertMany
 		return colecaoUsuarios.insertMany(listaDeUsuarios)
@@ -62,13 +57,12 @@ openNOSQLdb("bancoteste")
 		usuarios.forEach(function(u){
 			console.log("Usuario id="+u.id, "data='"+u.horario+"'");                                                          
 		})
-
 		// remove a coleção usuarios (equivalente a um drop table)
 		return colecaoUsuarios.drop();
 	})
 	.then(function(){
 		//fecha conexao com o banco
-		return banco.close();
+		banco.close();
 	})
 	.catch(function (err){
 		console.log(err)

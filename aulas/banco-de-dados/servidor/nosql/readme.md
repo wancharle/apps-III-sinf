@@ -24,3 +24,12 @@ Para testar o código execute o comando abaixo
 ```bash
 $ node crud.js
 ```
+
+Outra versão que não utiliza o padrão [Promessas](https://www.promisejs.org) pode executado com o comando abaixo:
+```bash
+$ node crud-sem-promessas.js
+```
+
+A diferença entre eles está apenas na forma que o código é escrito. Mas observe que em programação não bloqueante e assíncrona é recomendável o uso de promessas para evitar o [Callback Hell](http://callbackhell.com).
+
+
