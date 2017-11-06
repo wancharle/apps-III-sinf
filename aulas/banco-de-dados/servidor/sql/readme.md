@@ -1,15 +1,15 @@
 
 # Exemplo de aplicação SQL em node.js
 
-Este exemplo mostra como se conectar num banco de dados SQL (sqliteDB) e como realizar operações CRUD (Create,  Read, Update e Delete) básicas neste banco de dados.
+Este exemplo mostra como se conectar num banco de dados SQL (sqliteDB) e como realizar operações CRUD (Create,  Read, Update e Delete) básicas no banco de dados.
 
 ## 1 - Crie o projeto
 
-No terminal e na pasta que deseja criar o projeto digite:
+No terminal, e dentro na pasta que deseja criar o projeto, digite:
 ```bash
 npm init
 ```
-Presione \<enter\> para todas as perguntas.
+Pressione \<enter\> para todas as perguntas.
 
 ## 2 - Instale as Dependências
 
@@ -69,7 +69,7 @@ db.close();
 
 ## Teste
 
-Rode o comando abaixo para testar a conexão com o banco de dados sql:
+Rode o comando abaixo para testar a conexão com o banco de dados SQL:
 ```bash
 node crud.js
 ```
