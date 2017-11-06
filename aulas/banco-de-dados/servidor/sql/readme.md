@@ -30,10 +30,10 @@ var sqlite3 = require('sqlite3').verbose();
 // criando banco para teste
 var db = new sqlite3.Database('bancoteste.db');
     
-// força a execução serial das queries  em vez  paralela que é o mais comum para aplicacoes node.js
+// força a execução serial das queries  em vez  de paralela que é o mais comum para aplicações node.js
 db.serialize(function() {   
 
-    // cria uma tabela 'usuario' com dois campos : id e dt
+    // cria uma tabela 'usuario' com dois campos : id e horario
     db.run("CREATE TABLE usuario (id INT, horario TEXT)")
 
     // cria um statement para executar um codigo sql
@@ -73,3 +73,24 @@ Rode o comando abaixo para testar a conexão com o banco de dados SQL:
 ```bash
 node crud.js
 ```
+
+## Exercícios 
+
+### Exercício 1
+
+Altere o código do arquivo crud.js para que em vez de apagar o usuario de ID=8 ele apague outros dois usuarios de ID=3 e ID=7.
+
+### Exercício 2
+
+Utilizando como referência o código do script crud.js, crie um script chamado importa_usuarios.js que importe para o seu banco de dados os seguintes usuários:
+
+| ID | Usuario   | Horário  | 
+|----|-----------|----------|
+| 22 | Árton     | 07:00:00 |
+| 13 | Leila     | 12:30:00 |
+| 19 | Felipe    | 10:01:00 |
+| 67 | Guilherme | 08:00:50 |
+| 88 | Paula.    | 17:51:31 |
+
+Após a importação, o script deve realizar uma consulta no banco de dados e imprimir os usuários cadastrados.
+
