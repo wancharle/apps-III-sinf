@@ -78,13 +78,13 @@ node crud.js
 
 ### Exercício 1
 
-Altere o código do arquivo crud.js para que em vez de apagar o usuario de ID=8 ele apague outros dois usuarios de ID=3 e ID=7.
+Altere o código do arquivo crud.js para que em vez de apagar o usuario de ID 8 ele apague  dois outros usuarios com ID 3 e 7.
 
 ### Exercício 2
 
 Utilizando como referência o código do script crud.js, crie um script chamado importa_usuarios.js que importe para o seu banco de dados os seguintes usuários:
 
-| ID | Usuario   | Horário  | 
+| ID | Nome      | Horário  | 
 |----|-----------|----------|
 | 22 | Árton     | 07:00:00 |
 | 13 | Leila     | 12:30:00 |
@@ -93,4 +93,6 @@ Utilizando como referência o código do script crud.js, crie um script chamado 
 | 88 | Paula.    | 17:51:31 |
 
 Após a importação, o script deve realizar uma consulta no banco de dados e imprimir os usuários cadastrados.
+
+Observação: em comparaço com a tabela usuario do script crud.js, a tabela de usuários desse exercício possui uma coluna nova que armazena o nome do usuário.
 
