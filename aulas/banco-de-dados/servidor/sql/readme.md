@@ -94,5 +94,5 @@ Utilizando como referência o código do script crud.js, crie um script chamado 
 
 Após a importação, o script deve realizar uma consulta no banco de dados e imprimir os usuários cadastrados.
 
-Observação: em comparaço com a tabela usuario do script crud.js, a tabela de usuários desse exercício possui uma coluna nova que armazena o nome do usuário.
+Observação: em comparação com a tabela usuario do script crud.js, a tabela de usuários desse exercício possui uma coluna nova que armazena o nome do usuário.
 
