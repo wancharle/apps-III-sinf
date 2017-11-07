@@ -17,12 +17,12 @@ $ sudo npm install -g cordova
 
 ## Crie o projeto do seu aplicativo
 
-Para criar um projeto cordova execute o comando `cordova <nome da pasta> <endereço do pacote> <nome do aplicativo>`. 
+Para criar um projeto cordova execute o comando `cordova create <nome da pasta> <endereço do pacote> <nome do aplicativo>`. 
 
 Por exemplo, para criar uma pasta chamada "MeuApp" com o codigo do projeto, com endereço de pacote do projeto "com.meuapp" e com o applicativo com nome "MeuApp" execute o comando abaixo:
 
 ```bash
-$ cordova MeuApp com.meuapp MeuApp
+$ cordova create MeuApp com.meuapp MeuApp
 ```
 
 
