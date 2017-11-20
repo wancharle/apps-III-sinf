@@ -107,7 +107,7 @@ public class OlaMundo extends HttpServlet {
 } 
 ```
 
-3. Adicione as dependências do projeto dentro da  tag <dependencies> do arquivo [pom.xml](pom.xml):
+3. Adicione as dependências do projeto dentro da  tag \<dependencies\> do arquivo [pom.xml](pom.xml):
 ```xml
 <!--  Servlet: Para fazer paginas web -->
 <dependency>
