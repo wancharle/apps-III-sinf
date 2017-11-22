@@ -28,6 +28,10 @@ function inserePessoa(id,nome,data,callback){
     statement.finalize() 
 }
 
+function deletePessoa(id,callback){
+    db.run('DELETE FROM pessoa WHERE id=?',[id],callback) 
+}
+
 
 
 // definindo quais funções serão exportadas (publicas) para outros arquivos.
@@ -35,4 +39,5 @@ exports.db = db
 exports.inicializa = inicializa
 exports.getPessoas= getPessoas
 exports.inserePessoa= inserePessoa
+exports.deletePessoa= deletePessoa 
 

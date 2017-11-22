@@ -10,24 +10,58 @@
                 var escopo = $scope; 
                 escopo.listaDePessoas = [];
 
-                PessoaService.getPessoas(function(response){
+                function listarPessoas(){
+                    PessoaService.getPessoas(function(response){
                        escopo.listaDePessoas = response.data; 
-                 })
+                     })
+                }
+
+                escopo.removerPessoa = function(id){
+                    alert(id)
+                     PessoaService.deletePessoa(id,function(response){
+                         // atualiza a lista apos remocao
+                         listarPessoas();
+
+                     })
+                }
+
+                // inicializa a lista
+                listarPessoas()
 
             }
 
             modulo.controller('ControladorPessoas', controlador);
 
         </script>
+
+        <style>
+            /* estilos para deixar a tabela mais apresentavel */
+            table { border-collapse: collapse;}
+            td, th {  border: 1px solid #ddd; padding: 8px;}
+            td {text-align: center}
+            tr:nth-child(even){background-color: #f2f2f2;}
+            tr:hover {background-color: #ddd;}
+        </style>
       </head>
       <body>
         <h2>Pessoas</h2>
         <div ng-controller="ControladorPessoas as controlador">
-          <p ng-repeat="pessoa in listaDePessoas">{{ pessoa }}</p>
-          <form>
-            <input type="text" placeholder="Nome">
-            <input type="submit" value="adicionar">
-          </form>
+            <table>
+             <tr>
+               <th>ID</th>
+               <th>NOME</th>
+               <th>DATA DE NASCIMENTO</th>
+               <th>AÇÕES</th>
+            </tr>
+            <tr ng-repeat="pessoa in listaDePessoas">
+             <td>{{ pessoa.id }}</td>
+             <td>{{ pessoa.nome}}</td>
+             <td>{{ pessoa.dataNasc}}</td>
+             <td><a href="editar.html?id={{pessoa.id}}">editar</a> | <a href="#" ng-click="removerPessoa(pessoa.id)">remover</a></td>
+            </tr>
+          </table>
+          <br>
+          <p><a href="create.html">Inserir Pessoa</a>
         </div>
       </body>
 </html>

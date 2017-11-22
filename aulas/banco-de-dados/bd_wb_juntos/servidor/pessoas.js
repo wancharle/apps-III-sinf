@@ -40,13 +40,15 @@ function criarPessoaViaGet(req,res,next){ // /pessoa/?id=9&nome=teste&data=20-11
     })
 }
 
-function createPessoa(req,res,next){
-    es.send("ok") 
+function deletePessoa(req,res,next){
+    bd.deletePessoa(req.body.id,function(err,result){ 
+        res.send('ok')
+        })
 }
-
 // amarra algumas urls com as funções CRUD respectivas 
 router.get('/', listarPessoas)
 router.post('/create', criarPessoaViaPost)
 router.get('/create',criarPessoaViaGet)
+router.post('/delete',deletePessoa)
 // exporta o roteador de urls dos enderecos crud da tabela pessoas
 module.exports = router;
