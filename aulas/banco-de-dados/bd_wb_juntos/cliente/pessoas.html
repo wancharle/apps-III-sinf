@@ -1,0 +1,33 @@
+<!doctype html>
+    <html ng-app="pessoasApp">
+      <head>
+        <script src="angular.min.js"></script>
+        <script src="pessoas.js"></script>
+        <script>
+            var modulo = angular.module('pessoasApp', ['PessoaService']);
+
+            function controlador($scope,$http,$location,PessoaService) {
+                var escopo = $scope; 
+                escopo.listaDePessoas = [];
+
+                PessoaService.getPessoas(function(response){
+                       escopo.listaDePessoas = response.data; 
+                 })
+
+            }
+
+            modulo.controller('ControladorPessoas', controlador);
+
+        </script>
+      </head>
+      <body>
+        <h2>Pessoas</h2>
+        <div ng-controller="ControladorPessoas as controlador">
+          <p ng-repeat="pessoa in listaDePessoas">{{ pessoa }}</p>
+          <form>
+            <input type="text" placeholder="Nome">
+            <input type="submit" value="adicionar">
+          </form>
+        </div>
+      </body>
+</html>
