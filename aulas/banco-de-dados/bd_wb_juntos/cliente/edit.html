@@ -1,0 +1,78 @@
+<html ng-app="pessoasEdit">
+      <head>
+        <script src="js/angular.min.js"></script>
+        <script src="js/pessoa-service.js"></script>
+        <script>
+            var modulo = angular.module('pessoasEdit', ['PessoaService']);
+           
+            // configura o localtionProvider para usar HTML5 para permitir
+            // usar o $location.search().parametro para ler um parametro da url 
+            modulo.config(['$locationProvider', function($locationProvider) {
+               $locationProvider.html5Mode({enabled:true,requireBase:false});
+            }]);
+
+            function controlador($scope,$http,$window,$location,PessoaService) {
+                var escopo = $scope
+
+                // inicializa a variavel id com o valor passado como parametro na URL (http://url/?id=valor)
+				var id = parseInt($location.search().id)
+                
+                // função chamada após o "PessoaService" conseguir atualizar com sucesso uma pessoa no servidor
+                function pessoaFoiAtualizada(response){
+						$window.location.href = "/pessoas.html" // redireciona para pagina pessoas.html
+                } 
+
+                // função que atualiza os dados da pessoa no servidor usando o AngularService "PessoaService"
+                // é chamada pelo formulário no momento do submit (ver ng-submit)
+                function atualizaPessoa(){
+                     PessoaService.atualizaPessoa(id,escopo.nome,escopo.dnasc,pessoaFoiAtualizada)
+                } 
+              
+                // função chamada após o PessoaService conseguir receber os dados atuais de uma pessoa do servidor.
+                // Os dados da pessoa são utilizados para inicializar os dados do escopo do controlador
+                // Os dados do escopo são utilizados para inicializar os campos do formulário.
+                function pessoaFoiRecebida(response){
+                    var pessoa = response.data
+                    escopo.nome = pessoa.nome
+                    escopo.dnasc = pessoa.dataNasc
+                }
+
+                // carrega os dados atuais da pessoa 
+                PessoaService.getPessoa(id, pessoaFoiRecebida) 
+
+                // associa função local "atualizaPessoa" ao escopo do controlador 
+                escopo.atualizaPessoa = atualizaPessoa
+            }
+
+            modulo.controller('ControladorEditarPessoa', controlador);
+        </script>
+
+      </head>
+      <body>
+        <div style="margin:0 auto;width:480px;" ng-controller="ControladorEditarPessoa">
+
+            <h2><a href="/pessoas.html" target="_self">Pessoas</a> | Atualizar</h2>
+
+			<form role="form" ng-submit='atualizaPessoa()'>
+				<fieldset>
+					<legend>Cadastro de Pessoa</legend>
+					<p>
+					  <label>NOME</label>
+					  <input type="text" 
+							 ng-model="nome"
+							 class="form-control"
+							 placeholder="informe um nome">
+					</p>
+					<p>
+					  <label>DATA DE NASCIMENTO</label>
+					  <input type="text"
+							 ng-model="dnasc"
+							 class="form-control"
+							 placeholder="informe uma data">
+					</p>
+				</fieldset>
+				<button>Atualizar dados</button>
+			</form> 
+        </div>
+      </body>
+</html>

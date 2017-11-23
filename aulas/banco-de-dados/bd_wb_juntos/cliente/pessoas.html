@@ -1,36 +1,42 @@
 <!doctype html>
     <html ng-app="pessoasApp">
       <head>
-        <script src="angular.min.js"></script>
-        <script src="pessoas.js"></script>
+        <script src="js/angular.min.js"></script>
+        <script src="js/pessoa-service.js"></script>
+
         <script>
-            var modulo = angular.module('pessoasApp', ['PessoaService']);
+            var modulo = angular.module('pessoasApp', [
+				'PessoaService' // informa que se este modulo depende do modulo "PessoaService"
+			]);
 
             function controlador($scope,$http,$location,PessoaService) {
                 var escopo = $scope; 
-                escopo.listaDePessoas = [];
 
-                function listarPessoas(){
-                    PessoaService.getPessoas(function(response){
-                       escopo.listaDePessoas = response.data; 
-                     })
+				// função chamada após o PessoaService fazer o download da lista de pessoas do servidor.
+                function pessoasForamRecebidas(resposta){
+                       escopo.listaDePessoas = resposta.data 
                 }
 
-                escopo.removerPessoa = function(id){
-                    alert(id)
-                     PessoaService.deletePessoa(id,function(response){
-                         // atualiza a lista apos remocao
-                         listarPessoas();
-
-                     })
+				// função chamada após a pessoa ser deletada que atualiza a lista 
+				// de pessoa para nao exibir mais a pessoa que acabou de ser deletada
+				function pessoaFoiDeletada(resposta){ 
+			    	PessoaService.getPessoas(pessoasForamRecebidas)
                 }
 
-                // inicializa a lista
-                listarPessoas()
+				// função que remove a pessoa utilizando o AngularService "PessoaService"
+                function removerPessoa(id){
+                     PessoaService.deletePessoa(id,pessoaFoiDeletada)
+                }
 
+				// associando variaveis e funções locais ao escopo do controlador
+                escopo.listaDePessoas = []
+				escopo.removerPessoa = removerPessoa
+
+                // inicializa a lista de pessoas
+			    PessoaService.getPessoas(pessoasForamRecebidas)
             }
 
-            modulo.controller('ControladorPessoas', controlador);
+            modulo.controller('ControladorPessoas', controlador)
 
         </script>
 
@@ -44,8 +50,8 @@
         </style>
       </head>
       <body>
-        <h2>Pessoas</h2>
-        <div ng-controller="ControladorPessoas as controlador">
+        <div style="margin:0 auto;width:480px;" ng-controller="ControladorPessoas as controlador">
+        	<h2>Pessoas</h2>
             <table>
              <tr>
                <th>ID</th>
@@ -57,10 +63,14 @@
              <td>{{ pessoa.id }}</td>
              <td>{{ pessoa.nome}}</td>
              <td>{{ pessoa.dataNasc}}</td>
-             <td><a href="editar.html?id={{pessoa.id}}">editar</a> | <a href="#" ng-click="removerPessoa(pessoa.id)">remover</a></td>
+             <td>
+				<a href="edit.html?id={{pessoa.id}}">editar</a> 
+				| 
+				<a href="#" ng-click="removerPessoa(pessoa.id)">remover</a>
+			</td>
             </tr>
           </table>
-          <br>
+          <br/>
           <p><a href="create.html">Inserir Pessoa</a>
         </div>
       </body>

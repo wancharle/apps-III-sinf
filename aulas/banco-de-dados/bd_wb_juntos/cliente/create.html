@@ -1,0 +1,65 @@
+<html ng-app="pessoasCreate">
+      <head>
+        <script src="js/angular.min.js"></script>
+        <script src="js/pessoa-service.js"></script>
+        <script>
+            var modulo = angular.module('pessoasCreate', [
+                'PessoaService' 
+            ]);
+
+            function controlador($scope, $window, PessoaService) {
+                var escopo = $scope 
+
+                // função chamada após o "PessoaService" conseguir inserir com sucesso uma pessoa no servidor.
+                function pessoaFoiInserida() {
+					$window.location.href="/pessoas.html"  // redireciona para pagina pessoas.html
+                }
+
+                // função que insere a pessoa utilizando o AngularService "PessoaService"
+                function inserePessoa(){
+                     PessoaService.inserePessoa(escopo.id, escopo.nome, escopo.dnasc, pessoaFoiInserida)
+                } 
+               
+                // associa função local "inserePessoa" ao escopo do controlador 
+                escopo.inserePessoa = inserePessoa
+            }
+
+            modulo.controller('ControladorInserirPessoa', controlador);
+        </script>
+      </head>
+      <body>
+        <div style="margin:0 auto;width:480px;" ng-controller="ControladorInserirPessoa">
+
+            <h2><a href="/pessoas.html" target="_self">Pessoas</a> | Inserir</h2>
+
+			<form role="form" ng-submit='inserePessoa()'>
+				<fieldset>
+					<legend>Cadastro de Pessoa</legend>
+					<p>
+					  <label>ID</label>
+					  <input type="number" min="1" 
+							 ng-model="id"
+							 class="form-control"
+							 placeholder="informe um ID">
+					</p>
+					<p>
+					  <label>NOME</label>
+					  <input type="text" 
+							 ng-model="nome"
+							 class="form-control"
+							 placeholder="informe um nome">
+					</p>
+					<p>
+					  <label>DATA DE NASCIMENTO</label>
+					  <input type="text"
+							 ng-model="dnasc"
+							 class="form-control"
+							 placeholder="informe uma data">
+					</p>
+				</fieldset>
+                <br>
+				<button>Inserir Pessoa</button>
+			</form> 
+        </div>
+      </body>
+</html>
