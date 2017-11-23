@@ -11,3 +11,7 @@ node index.js
 ```
 
 Teste. Abra no navegador de sua preferência o endereço http://127.0.0.1:8000/ para acessar o webservice.
+
+Se tudo estiver ok, a pagina inicial deve redirecionar para a pagina pessoas.html mostrada na imagem abaixo:
+
+![screen](screenshot.png)
