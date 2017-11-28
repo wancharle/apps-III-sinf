@@ -1,0 +1,98 @@
+<!doctype html>
+    <html ng-app="pessoasApp">
+      <head>
+        <meta charset="utf-8">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+ 
+        <script src="js/angular.min.js"></script>
+        <script src="js/pessoa-service.js"></script>
+
+        <script>
+             function converteParaArray(r){
+                var i=0;
+                var arr = []
+                while(i<(r.length)){ 
+                   arr.push(r.item(i)) 
+                   i+=1;
+                }
+                return arr; 
+            } 
+            var modulo = angular.module('pessoasApp', [
+				'PessoaService' // informa que se este modulo depende do modulo "PessoaService"
+			]);
+
+            function controlador($scope,$http,$location,PessoaService) {
+                var escopo = $scope; 
+
+                function pessoasForamRecebidas(tx,resposta){
+                      escopo.listaDePessoas = converteParaArray(resposta.rows);
+                      // avisa o angular que uma variavel do escopo mudou de valor
+                      escopo.$apply();
+                      }
+
+				// função chamada após a pessoa ser deletada que atualiza a lista 
+				// de pessoa para nao exibir mais a pessoa que acabou de ser deletada
+				function pessoaFoiDeletada(resposta){ 
+			    	PessoaService.getPessoas(pessoasForamRecebidas)
+                }
+
+				// função que remove a pessoa utilizando o AngularService "PessoaService"
+                function removerPessoa(id){
+                     PessoaService.deletePessoa(id,pessoaFoiDeletada)
+                }
+
+				// associando variaveis e funções locais ao escopo do controlador
+                escopo.listaDePessoas = []
+				escopo.removerPessoa = removerPessoa
+
+                // inicializa a lista de pessoas
+               document.addEventListener('deviceready', function() {
+                    PessoaService.getPessoas(pessoasForamRecebidas)
+               });
+
+
+            }
+
+            modulo.controller('ControladorPessoas', controlador)
+
+        </script>
+
+        <style>
+            /* estilos para deixar a tabela mais apresentavel */
+            table { border-collapse: collapse;}
+            td, th {  border: 1px solid #ddd; padding: 8px;}
+            td {text-align: center}
+            tr:nth-child(even){background-color: #f2f2f2;}
+            tr:hover {background-color: #ddd;}
+        </style>
+      </head>
+      <body>
+        <div style="margin:0 auto;width:480px;" ng-controller="ControladorPessoas">
+        	<h2>Pessoas</h2>
+            <table>
+             <tr>
+               <th>ID</th>
+               <th>NOME</th>
+               <th>DATA DE NASCIMENTO</th>
+               <th>AÇÕES</th>
+            </tr>
+            <tr ng-repeat="pessoa in listaDePessoas">
+             <td>{{ pessoa.id }}</td>
+             <td>{{ pessoa.nome}}</td>
+             <td>{{ pessoa.dataNasc}}</td>
+             <td>
+				<a href="edit.html?id={{pessoa.id}}">editar</a> 
+				| 
+				<a href="#" ng-click="removerPessoa(pessoa.id)">remover</a>
+			</td>
+            </tr>
+          </table>
+          <br/>
+          <p><a href="create.html">Inserir Pessoa</a>
+        </div>
+
+        <script type="text/javascript" src="cordova.js"></script>
+      </body>
+</html>
