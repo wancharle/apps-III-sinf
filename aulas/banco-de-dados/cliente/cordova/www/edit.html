@@ -1,9 +1,12 @@
 <html ng-app="pessoasEdit">
       <head>
+
+        <viewport largura="440"></viewport> 
         <script src="js/angular.min.js"></script>
         <script src="js/pessoa-service.js"></script>
+        <script src="js/viewport.js"></script>
         <script>
-            var modulo = angular.module('pessoasEdit', ['PessoaService']);
+            var modulo = angular.module('pessoasEdit', ['viewport','PessoaService']);
            
             // configura o localtionProvider para usar HTML5 para permitir
             // usar o $location.search().parametro para ler um parametro da url 
@@ -17,28 +20,31 @@
                 // inicializa a variavel id com o valor passado como parametro na URL (http://url/?id=valor)
 				var id = parseInt($location.search().id)
                 
-                // função chamada após o "PessoaService" conseguir atualizar com sucesso uma pessoa no servidor
+                // função chamada após o "PessoaService" conseguir atualizar com sucesso uma pessoa no banco de dados
                 function pessoaFoiAtualizada(response){
-						$window.location.href = "/index.html" // redireciona para pagina pessoas.html
+						$window.location.href = "index.html" // redireciona para pagina pessoas.html
                 } 
 
-                // função que atualiza os dados da pessoa no servidor usando o AngularService "PessoaService"
+                // função que atualiza os dados da pessoa no banco de dados usando o AngularService "PessoaService"
                 // é chamada pelo formulário no momento do submit (ver ng-submit)
                 function atualizaPessoa(){
                      PessoaService.atualizaPessoa(id,escopo.nome,escopo.dnasc,pessoaFoiAtualizada)
                 } 
               
-                // função chamada após o PessoaService conseguir receber os dados atuais de uma pessoa do servidor.
-                // Os dados da pessoa são utilizados para inicializar os dados do escopo do controlador
-                // Os dados do escopo são utilizados para inicializar os campos do formulário.
-                function pessoaFoiRecebida(response){
-                    var pessoa = response.data
+                // função chamada após o PessoaService conseguir receber os dados atuais de uma pessoa do banco de dados.
+                function pessoaFoiRecebida(tx,resultSet){
+                    var pessoa = resultSet.rows.item(0);
                     escopo.nome = pessoa.nome
                     escopo.dnasc = pessoa.dataNasc
+
+                    // avisa o angular que variaveis do escopo foram alteradas
+                    escopo.$apply();
                 }
 
                 // carrega os dados atuais da pessoa 
-                PessoaService.getPessoa(id, pessoaFoiRecebida) 
+                document.addEventListener('deviceready', function() {
+                    PessoaService.getPessoa(id, pessoaFoiRecebida) 
+                });
 
                 // associa função local "atualizaPessoa" ao escopo do controlador 
                 escopo.atualizaPessoa = atualizaPessoa
@@ -49,7 +55,7 @@
 
       </head>
       <body>
-        <div style="margin:0 auto;width:480px;" ng-controller="ControladorEditarPessoa">
+        <div style="margin:0 ;width:420px;" ng-controller="ControladorEditarPessoa">
 
             <h2><a href="index.html" target="_self">Pessoas</a> | Atualizar</h2>
 
@@ -74,5 +80,7 @@
 				<button>Atualizar dados</button>
 			</form> 
         </div>
+
+        <script type="text/javascript" src="cordova.js"></script>
       </body>
 </html>

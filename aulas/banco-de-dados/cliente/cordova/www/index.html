@@ -4,10 +4,11 @@
         <meta charset="utf-8">
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
- 
+
+        <viewport largura="440"></viewport> 
         <script src="js/angular.min.js"></script>
         <script src="js/pessoa-service.js"></script>
+        <script src="js/viewport.js"></script>
 
         <script>
              function converteParaArray(r){
@@ -19,8 +20,11 @@
                 }
                 return arr; 
             } 
+
             var modulo = angular.module('pessoasApp', [
+                'viewport',
 				'PessoaService' // informa que se este modulo depende do modulo "PessoaService"
+
 			]);
 
             function controlador($scope,$http,$location,PessoaService) {
@@ -61,7 +65,7 @@
 
         <style>
             /* estilos para deixar a tabela mais apresentavel */
-            table { border-collapse: collapse;}
+            table { border-collapse: collapse;margin:0 auto;}
             td, th {  border: 1px solid #ddd; padding: 8px;}
             td {text-align: center}
             tr:nth-child(even){background-color: #f2f2f2;}
@@ -69,7 +73,7 @@
         </style>
       </head>
       <body>
-        <div style="margin:0 auto;width:480px;" ng-controller="ControladorPessoas">
+        <div style="margin:0;overflow:hidden;width:420px;" ng-controller="ControladorPessoas">
         	<h2>Pessoas</h2>
             <table>
              <tr>

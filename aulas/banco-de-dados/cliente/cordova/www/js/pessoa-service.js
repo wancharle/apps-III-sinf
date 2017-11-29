@@ -26,6 +26,10 @@ angular.module('PessoaService',[]).factory('PessoaService',['$http', function($h
    }
 
    function getPessoa(id_pessoa,cb_sucesso){
+     db.transaction(function(tx){
+        tx.executeSql('SELECT * FROM pessoa WHERE id=?',[id_pessoa],cb_sucesso,cb_error);
+     });
+ 
    }
 
    function deletePessoa(id_pessoa,cb_sucesso){
@@ -44,6 +48,9 @@ angular.module('PessoaService',[]).factory('PessoaService',['$http', function($h
    }
 
    function atualizaPessoa(id_pessoa,nome,data,cb_sucesso){
+     db.transaction(function(tx){
+            tx.executeSql("UPDATE pessoa SET nome=?,dataNasc=? WHERE id=?",[nome,data,id_pessoa]);
+       },cb_error,cb_sucesso)
    }
 
    document.addEventListener('deviceready', function() {
