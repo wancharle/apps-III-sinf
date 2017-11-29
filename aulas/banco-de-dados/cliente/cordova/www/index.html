@@ -23,9 +23,8 @@
 
             var modulo = angular.module('pessoasApp', [
                 'viewport',
-				'PessoaService' // informa que se este modulo depende do modulo "PessoaService"
-
-			]);
+                'PessoaService' // informa que se este modulo depende do modulo "PessoaService"
+            ]);
 
             function controlador($scope,$http,$location,PessoaService) {
                 var escopo = $scope; 
@@ -34,27 +33,27 @@
                       escopo.listaDePessoas = converteParaArray(resposta.rows);
                       // avisa o angular que uma variavel do escopo mudou de valor
                       escopo.$apply();
-                      }
-
-				// função chamada após a pessoa ser deletada que atualiza a lista 
-				// de pessoa para nao exibir mais a pessoa que acabou de ser deletada
-				function pessoaFoiDeletada(resposta){ 
-			    	PessoaService.getPessoas(pessoasForamRecebidas)
                 }
 
-				// função que remove a pessoa utilizando o AngularService "PessoaService"
+                // função chamada após a pessoa ser deletada que atualiza a lista 
+                // de pessoa para nao exibir mais a pessoa que acabou de ser deletada
+                function pessoaFoiDeletada(resposta){ 
+                    PessoaService.getPessoas(pessoasForamRecebidas)
+                }
+
+                // função que remove a pessoa utilizando o AngularService "PessoaService"
                 function removerPessoa(id){
                      PessoaService.deletePessoa(id,pessoaFoiDeletada)
                 }
 
-				// associando variaveis e funções locais ao escopo do controlador
+                // associando variaveis e funções locais ao escopo do controlador
                 escopo.listaDePessoas = []
-				escopo.removerPessoa = removerPessoa
+                escopo.removerPessoa = removerPessoa
 
                 // inicializa a lista de pessoas
-               document.addEventListener('deviceready', function() {
+                document.addEventListener('deviceready', function() {
                     PessoaService.getPessoas(pessoasForamRecebidas)
-               });
+                });
 
 
             }
@@ -74,7 +73,7 @@
       </head>
       <body>
         <div style="margin:0;overflow:hidden;width:420px;" ng-controller="ControladorPessoas">
-        	<h2>Pessoas</h2>
+            <h2>Pessoas</h2>
             <table>
              <tr>
                <th>ID</th>
@@ -87,10 +86,10 @@
              <td>{{ pessoa.nome}}</td>
              <td>{{ pessoa.dataNasc}}</td>
              <td>
-				<a href="edit.html?id={{pessoa.id}}">editar</a> 
-				| 
-				<a href="#" ng-click="removerPessoa(pessoa.id)">remover</a>
-			</td>
+                <a href="edit.html?id={{pessoa.id}}">editar</a> 
+                | 
+                <a href="#" ng-click="removerPessoa(pessoa.id)">remover</a>
+            </td>
             </tr>
           </table>
           <br/>

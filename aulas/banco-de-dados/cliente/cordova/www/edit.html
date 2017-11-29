@@ -18,17 +18,17 @@
                 var escopo = $scope
 
                 // inicializa a variavel id com o valor passado como parametro na URL (http://url/?id=valor)
-				var id = parseInt($location.search().id)
+                var id = parseInt($location.search().id)
                 
                 // função chamada após o "PessoaService" conseguir atualizar com sucesso uma pessoa no banco de dados
                 function pessoaFoiAtualizada(response){
-						$window.location.href = "index.html" // redireciona para pagina pessoas.html
-                } 
+                    $window.location.href = "index.html" // redireciona para pagina pessoas.html
+                }
 
                 // função que atualiza os dados da pessoa no banco de dados usando o AngularService "PessoaService"
                 // é chamada pelo formulário no momento do submit (ver ng-submit)
                 function atualizaPessoa(){
-                     PessoaService.atualizaPessoa(id,escopo.nome,escopo.dnasc,pessoaFoiAtualizada)
+                    PessoaService.atualizaPessoa(id,escopo.nome,escopo.dnasc,pessoaFoiAtualizada)
                 } 
               
                 // função chamada após o PessoaService conseguir receber os dados atuais de uma pessoa do banco de dados.
@@ -36,7 +36,6 @@
                     var pessoa = resultSet.rows.item(0);
                     escopo.nome = pessoa.nome
                     escopo.dnasc = pessoa.dataNasc
-
                     // avisa o angular que variaveis do escopo foram alteradas
                     escopo.$apply();
                 }
@@ -59,28 +58,28 @@
 
             <h2><a href="index.html" target="_self">Pessoas</a> | Atualizar</h2>
 
-			<form role="form" ng-submit='atualizaPessoa()'>
-				<fieldset>
-					<legend>Cadastro de Pessoa</legend>
-					<p>
-					  <label>NOME</label>
-					  <input type="text" 
-							 ng-model="nome"
-							 class="form-control"
-							 placeholder="informe um nome">
-					</p>
-					<p>
-					  <label>DATA DE NASCIMENTO</label>
-					  <input type="text"
-							 ng-model="dnasc"
-							 class="form-control"
-							 placeholder="informe uma data">
-					</p>
-				</fieldset>
-				<button>Atualizar dados</button>
-			</form> 
+            <form role="form" ng-submit='atualizaPessoa()'>
+                <fieldset>
+                    <legend>Cadastro de Pessoa</legend>
+                    <p>
+                      <label>NOME</label>
+                      <input type="text" 
+                             ng-model="nome"
+                             class="form-control"
+                             placeholder="informe um nome">
+                    </p>
+                    <p>
+                      <label>DATA DE NASCIMENTO</label>
+                      <input type="text"
+                             ng-model="dnasc"
+                             class="form-control"
+                             placeholder="informe uma data">
+                    </p>
+                </fieldset>
+                <button>Atualizar dados</button>
+            </form> 
         </div>
 
         <script type="text/javascript" src="cordova.js"></script>
-      </body>
+  </body>
 </html>

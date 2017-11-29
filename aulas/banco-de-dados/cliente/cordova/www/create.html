@@ -20,12 +20,12 @@
 
                 // função chamada após o "PessoaService" conseguir inserir com sucesso uma pessoa no servidor.
                 function pessoaFoiInserida() {
-					$window.location.href="index.html"  // redireciona para pagina pessoas.html
+                    $window.location.href="index.html"  // redireciona para pagina pessoas.html
                 }
 
                 // função que insere a pessoa utilizando o AngularService "PessoaService"
                 function inserePessoa(){
-                     PessoaService.inserePessoa(escopo.id, escopo.nome, escopo.dnasc, pessoaFoiInserida)
+                    PessoaService.inserePessoa(escopo.id, escopo.nome, escopo.dnasc, pessoaFoiInserida)
                 } 
                
                 // associa função local "inserePessoa" ao escopo do controlador 
@@ -40,34 +40,34 @@
 
             <h2><a href="index.html" target="_self">Pessoas</a> | Inserir</h2>
 
-			<form role="form" ng-submit='inserePessoa()'>
-				<fieldset>
-					<legend>Cadastro de Pessoa</legend>
-					<p>
-					  <label>ID</label>
-					  <input type="number" min="1" 
-							 ng-model="id"
-							 class="form-control"
-							 placeholder="informe um ID">
-					</p>
-					<p>
-					  <label>NOME</label>
-					  <input type="text" 
-							 ng-model="nome"
-							 class="form-control"
-							 placeholder="informe um nome">
-					</p>
-					<p>
-					  <label>DATA DE NASCIMENTO</label>
-					  <input type="text"
-							 ng-model="dnasc"
-							 class="form-control"
-							 placeholder="informe uma data">
-					</p>
-				</fieldset>
-                <br>
-				<button>Inserir Pessoa</button>
-			</form> 
+                <form role="form" ng-submit='inserePessoa()'>
+                    <fieldset>
+                        <legend>Cadastro de Pessoa</legend>
+                        <p>
+                          <label>ID</label>
+                          <input type="number" min="1" 
+                                 ng-model="id"
+                                 class="form-control"
+                                 placeholder="informe um ID">
+                        </p>
+                        <p>
+                          <label>NOME</label>
+                          <input type="text" 
+                                 ng-model="nome"
+                                 class="form-control"
+                                 placeholder="informe um nome">
+                        </p>
+                        <p>
+                          <label>DATA DE NASCIMENTO</label>
+                          <input type="text"
+                                 ng-model="dnasc"
+                                 class="form-control"
+                                 placeholder="informe uma data">
+                        </p>
+                    </fieldset>
+                    <br>
+                    <button>Inserir Pessoa</button>
+                </form> 
         </div>
       
         <script type="text/javascript" src="cordova.js"></script>
