@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html ng-app="mensagensApp">
+    <head>
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:; connect-src ws://*:8000/;">
+		<meta charset="utf-8">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <viewport largura="320"></viewport> 
+
+        <title>Mensagens</title>
+		<link rel="stylesheet" href="css/index.css" type="text/css"></link>
+
+        <script src="js/angular.min.js"></script>
+        <script src="js/websockets.js"></script>
+        <script src="js/viewport.js"></script>
+
+        <script>
+        var app = angular.module('mensagensApp',['viewport','WebSocketService']);
+
+        app.controller('MensagensCtrl',function ($scope, WebSocketService){
+            $scope.mensagens  = [];
+		
+			function getHorario(){
+				var time = new Date();
+				return ("0"+time.getHours()).slice(-2)+":"+("0"+time.getMinutes()).slice(-2);
+			}
+			function recebeuMensagem(mensagem){
+                $scope.mensagens.push({tipo:'recebida', horario: getHorario(), texto:mensagem})
+				$scope.$apply();
+			}
+
+            function enviaMensagem(){
+				if ($scope.mensagem.length == 0) return  // nao envia mensagem vazia
+				if ($scope.mensagem=="[sair]"){
+					WebSocketService.sairSala();
+					return
+				}
+                $scope.mensagens.push({tipo:'enviada', horario: getHorario(), texto:$scope.mensagem})
+				WebSocketService.enviaMensagem($scope.mensagem);
+				$scope.mensagem = "" // limpa a caixa de texto da mensagem
+            }
+
+			WebSocketService.configuraOnMessage(recebeuMensagem);
+			$scope.enviaMensagem = enviaMensagem;
+            
+        });
+
+        app.controller('ConexaoCtrl',function ($scope,WebSocketService){
+            $scope.conectado=false;
+			$scope.ehServidor = false;
+			$scope.salaCriada = false;
+			var conexao;
+
+			// callbacks
+			function recebeuIPs(lista){
+				$scope.ips = lista;
+				$scope.$apply();
+			}
+			function conectou(){
+				$scope.conectado = true
+				$scope.$apply()
+			}	
+			function desconectou(){
+				$scope.conectado = false
+				$scope.$apply()
+			}	
+			function salaFoiCriada(){
+				$scope.salaCriada = true
+				$scope.$apply()
+				WebSocketService.getIPs(recebeuIPs);
+			}
+			function salaFoiFechada(){
+				$scope.salaCriada = false 
+				$scope.$apply()
+			}
+			
+			// metodos do controller
+			function criarSala(){
+				WebSocketService.criarSala(8000,salaFoiCriada,conectou,desconectou)
+			}
+			function entrarEmSala(){
+				var ipSala = prompt("Informe o IP da sala:")
+				WebSocketService.conectarSala(ipSala,8000,conectou,desconectou)
+			}
+			function fecharSala(){
+				WebSocketService.fecharSala(salaFoiFechada)
+			}
+			// deixando os metodos puplicos no escopo
+			$scope.criarSala = criarSala
+			$scope.fecharSala= fecharSala 
+			$scope.entrarEmSala = entrarEmSala
+        });
+ 
+        </script>
+    </head>
+    <body ng-controller="ConexaoCtrl" style="margin:0;overflow:hidden;width:320px;" >
+
+         <div ng-show="conectado==false && salaCriada == false" style="padding:10px;background:white">
+			<p><a href="#" ng-click="criarSala()">Criar uma sala</a></p>
+			<br/>
+			<p><a href="#" ng-click="entrarEmSala()">Entrar em uma sala</a></p>
+		</div>
+
+		<div ng-show="conectado==false && salaCriada == true" style="padding:10px;background:white">
+			<p>Sala criada com sucesso!</p>
+			<p>Tente usar um dos IPv4 abaixo para entra na sala apartir de outro aparelho.</p>
+			<p ng-repeat="(ip, tipo) in ips">{{tipo}} = {{ip}}</p>
+			<p>Observação: use o mesmo IP que é fornecido por sua rede WiFi. E os dois aparelhos precisam estar na mesma rede. </p>
+			<br>
+			<p>Envie a mensagem [sair] para sair de uma sala.</p>
+			<p><a href="#" ng-click="fecharSala()">fechar sala</a></p>
+		</div>
+
+         <div ng-show="conectado==true" ng-controller='MensagensCtrl as msg'>
+            <div class="mensagens" >
+                <p ng-repeat="m in mensagens" class="mensagem-{{ m.tipo }}">
+                    {{ m.texto}} 
+                    <span>{{ m.horario }}</span>
+                </p>.
+            </div>
+            <div class="form" >
+                <form ng-submit="enviaMensagem()" >
+                <input type="text" ng-model="mensagem" placeholder="Digite uma mensagem">
+                <input type="submit" value="enviar">
+                </form>
+            </div>
+		</div>
+            <script type="text/javascript" src="cordova.js"></script>
+        </body>
+    </html>

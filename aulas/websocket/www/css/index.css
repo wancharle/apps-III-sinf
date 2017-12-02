@@ -1,0 +1,9 @@
+body{margin:0px;overflow:hidden;width:320px;padding:0px;font-size:18px;background-image:url(../img/bg.jpg);}
+.form{margin:0px;width:320px;padding:10px;background-color:rgb(244,241,238);position:absolute; bottom:0;}
+.form input[type=text]{width:220px;height:25px;font-size:18px;}
+.mensagens{margin; padding:30px 5px;width:310px;}
+.mensagens p {margin:2.5px;padding:2.5px;font-size:18px;}
+.mensagens span { font-size:12px;position:relative;bottom:0;}
+.mensagem-enviada {padding:5px; background-color: rgb(221,248,191);border:1px solid rgb(199,192,185);border-radius:5px;clear:both;float:right;}
+.mensagem-recebida{padding:5px; background-color: white;border:1px solid rgb(199,192,185);border-radius:5px;clear:both;;float:left;}
+
