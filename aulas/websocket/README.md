@@ -19,8 +19,8 @@ cordova run android
 ```
 
 
-<img src="https://raw.githubusercontent.com/wancharle/apps-III-sinf/master/aulas/websocket/screenshot1.png" width="250px" />
+<img src="https://raw.githubusercontent.com/wancharle/apps-III-sinf/master/aulas/websocket/screenshot1.png" width="250px" style="float:left" />
 
-<img src="https://raw.githubusercontent.com/wancharle/apps-III-sinf/master/aulas/websocket/screenshot2.png" width="250px" />
-<img src="https://raw.githubusercontent.com/wancharle/apps-III-sinf/master/aulas/websocket/screenshot3.png" width="250px" />
-<img src="https://raw.githubusercontent.com/wancharle/apps-III-sinf/master/aulas/websocket/screenshot4.png" width="250px" />
+<img src="https://raw.githubusercontent.com/wancharle/apps-III-sinf/master/aulas/websocket/screenshot2.png" width="250px" style="float:left"  />
+<img src="https://raw.githubusercontent.com/wancharle/apps-III-sinf/master/aulas/websocket/screenshot3.png" width="250px" style="float:left"  />
+<img src="https://raw.githubusercontent.com/wancharle/apps-III-sinf/master/aulas/websocket/screenshot4.png" width="250px" style="float:left" />
