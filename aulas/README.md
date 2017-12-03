@@ -27,6 +27,6 @@ Acesso pelo lado cliente:
 * Aplicativo Mobile: [Jogo Breakout](cordova/breakout)
 * Aplicativo Mobile: [Comunicador (troca de mensagens de texto por websocket)](websocket)
 
-## 4 - Plugins Úteis do Apache Cordova
+## 4 - Plugins úteis
 
 * Leitura de códigos de barras e QRCode: [Aplicativo](cordova/codigos-de-barras)
