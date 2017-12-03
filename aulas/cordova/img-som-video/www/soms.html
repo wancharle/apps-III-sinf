@@ -19,7 +19,6 @@
 				// capture callback
 				function captureSuccess(mediaFiles) {
 						var path = mediaFiles[0].fullPath
-
 						$scope.listaDeAudios.push(path);
 						$scope.$apply()
 				};
@@ -33,7 +32,19 @@
 				function gravarAudio(){
 					navigator.device.capture.captureAudio(captureSuccess, captureError);
 				}
+
+                var media_atual=null;
+                function playAudio(url_audio){
+                    if (media_atual){
+                       media_atual.stop();
+                       media_atual = null;
+                    }
+                   media_atual = new Media(url_audio)
+                   media_atual.play();
+               }
+
 				$scope.gravarAudio = gravarAudio;
+				$scope.playAudio = playAudio;
 				
             })
 
@@ -44,9 +55,14 @@
 			<h2><a href="index.html">Galerias</a> | Soms</h2>
             <p><button ng-click="gravarAudio()">gravarAudio</button></p>
             <h3>Lista de audios</h3>
-            <audio controls  ng-repeat="audiosrc in listaDeAudios">
-				<source ng-src="{{audiosrc}}" >
-             </audio>
+            <table>
+            <tr ng-repeat="audiosrc in listaDeAudios">
+                <!-- botão para o android pois ele grava audio em formato não suportado pela tag <audio> do HTML5 -->
+                <td><button ng-click="playAudio(audiosrc)">Play</button></td>
+                <!-- no iOS o html5 toca automaticamente o som via tag <audio> -->
+                <td><audio controls>   <source ng-src="{{audiosrc}}" ></audio></td>
+            </tr>
+            </table>
   
         </div>
         <script type="text/javascript" src="cordova.js"></script>
