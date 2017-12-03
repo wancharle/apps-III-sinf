@@ -23,6 +23,6 @@ Acesso pelo lado cliente:
 * [Acesso por cordova (SQL)](banco-de-dados/cliente/cordova)
 
 ## 3 - Aplicações Completas
-* [Aplicação CRUD completa (BD e WS juntos)](bd-ws-juntos)
-* [Jogo Breakout](cordova/breakout)
-* [Comunicador (troca de mensagens de texto por websocket)](websocket)
+* Aplicação Web: [CRUD (BD e WS juntos)](bd-ws-juntos)
+* Aplicativo Mobile: [Jogo Breakout](cordova/breakout)
+* Aplicativo Mobile: [Comunicador (troca de mensagens de texto por websocket)](websocket)
