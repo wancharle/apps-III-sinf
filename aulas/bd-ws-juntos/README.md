@@ -1,4 +1,7 @@
 ## Aplicação CRUD completa (Banco de Dados e WebService juntos)
+![screen](screenshot.png)
+
+## Como utilizar?
 
 Instale as dependências. Na pasta do projeto execute o comando abaixo:
 ```bash
@@ -14,4 +17,3 @@ Teste. Abra no navegador de sua preferência o endereço http://127.0.0.1:8000/ 
 
 Se tudo estiver ok, a pagina inicial deve redirecionar para a pagina pessoas.html mostrada na imagem abaixo:
 
-![screen](screenshot.png)
