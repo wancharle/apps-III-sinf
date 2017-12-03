@@ -20,7 +20,7 @@ Acesso pelo lado servidor:
 
 Acesso pelo lado cliente:
 <!-- * [Acesso por localStorage](banco-de-dados/cliente/localStorage) -->
-* [Acesso por cordova (SQL)](banco-de-dados/cliente/cordova)
+* Acesso por plugin do cordova: [Aplicativo mobile (banco de Dados no próprio aparelho)](banco-de-dados/cliente/cordova)
 
 ## 3 - Aplicações Completas
 * Aplicação Web: [CRUD (BD e WS juntos)](bd-ws-juntos)
