@@ -26,3 +26,7 @@ Acesso pelo lado cliente:
 * Aplicação Web: [CRUD (BD e WS juntos)](bd-ws-juntos)
 * Aplicativo Mobile: [Jogo Breakout](cordova/breakout)
 * Aplicativo Mobile: [Comunicador (troca de mensagens de texto por websocket)](websocket)
+
+## 4 - Plugins Úteis do Apache Cordova
+
+* Leitura de códigos de barras e QRCode: [Aplicativo](cordova/codigos-de-barras)
