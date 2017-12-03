@@ -25,4 +25,4 @@ Acesso pelo lado cliente:
 ## 3 - Aplicações Completas
 * [Aplicação CRUD completa (BD e WS juntos)](bd-ws-juntos)
 * [Jogo Breakout](cordova/breakout)
-^ [Comunicador](websocket)
+* [Comunicador](websocket)
