@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html ng-app="LeitorDeCodigosAPP">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <script src="js/angular.min.js"></script>
+        <script src="js/viewport.js"></script>
+        <title>Leitor de Códigos</title>
+
+        <script>
+            var app = angular.module('LeitorDeCodigosAPP',[])
+
+            app.controller('LeitorCtrl',function($scope){
+			  function codigoFoiLido(result) {
+				$scope.codigo =  result.text 
+				$scope.tipo = result.format
+				
+				// retorna se o usuario cancelou a leitura
+				$scope.cancelado = result.cancelled	
+				$scope.$apply();
+			  }
+
+		      function problemaAoTentarLerCodigo(error) {
+         		 alert("A leitura falhou: " + error);
+			  }
+
+              function lerCodigo(){
+                cordova.plugins.barcodeScanner.scan(codigoFoiLido,problemaAoTentarLerCodigo)
+			  } 
+              
+				$scope.lerCodigo = lerCodigo   
+				
+            })
+
+        </script>
+    </head>
+    <body>
+        <div ng-controller="LeitorCtrl">
+			<h2>Leitor de Códigos de Barras</h2>
+			<p>Clique em ler código para ler códigos de barras e QR Codes:</h1>
+            <p><button ng-click="lerCodigo()">Ler código</button></p>
+            <p><b>Código lido:</b> {{ codigo }}</p>
+            <p><b>Tipo de código:</b> {{ tipo }}</p>
+        </div>
+        <script type="text/javascript" src="cordova.js"></script>
+    </body>
+</html>
