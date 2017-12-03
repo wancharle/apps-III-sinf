@@ -1,7 +1,8 @@
 ## Aplicação CRUD completa (Banco de Dados e WebService juntos)
+
 ![screen](screenshot.png)
 
-## Como utilizar?
+## Como utilizar:
 
 Instale as dependências. Na pasta do projeto execute o comando abaixo:
 ```bash
