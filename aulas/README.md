@@ -27,6 +27,7 @@ Acesso pelo lado cliente:
 * Aplicativo Mobile: [Jogo Breakout](cordova/breakout)
 * Aplicativo Mobile: [Comunicador (troca de mensagens de texto por websocket)](websocket)
 
-## 4 - Plugins úteis
+## 4 - Utilização de alguns plugins úteis
 
 * Leitura de códigos de barras e QRCode: [Aplicativo](cordova/codigos-de-barras)
+* Captura de Fotos, Audio e Vídeo: [Aplicativo](cordova/img-som-video)
