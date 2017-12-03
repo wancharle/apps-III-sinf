@@ -31,9 +31,7 @@ cordova plugin add cordova-plugin-websocket-server
 ```
 
 ## Como funciona?
-Todo o código do aplicativo desse exemplo pode ser visualizado no arquivo [index.html](www/index.html).
-
-No entanto, ainda precisamos incluir algumas dependências:
+Todo o código do aplicativo desse exemplo pode ser visualizado no arquivo [index.html](www/index.html). No entanto, observe que para o código funcionar ainda precisamos incluir algumas dependências:
 
 * A biblioteca Angular.js
 * A diretiva [viewport](www/js/viewport.js)
