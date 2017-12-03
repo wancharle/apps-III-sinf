@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html ng-app="img-som-video-APP">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <script src="js/angular.min.js"></script>
+        <script src="js/viewport.js"></script>
+        <title>img-som-video</title>
+
+        <script>
+            var app = angular.module('img-som-video-APP',[])
+
+            app.controller('FotosCtrl', function($scope){
+                $scope.listaDeFotos=[];
+
+				function setOptions(srcType) {
+					var options = {
+						// Some common settings are 20, 50, and 100
+						quality: 50,
+						destinationType: Camera.DestinationType.FILE_URI,
+						// In this app, dynamically set the picture source, Camera or photo gallery
+						sourceType: srcType,
+						encodingType: Camera.EncodingType.JPEG,
+						mediaType: Camera.MediaType.PICTURE,
+						allowEdit: true,
+						correctOrientation: true  //Corrects Android orientation quirks
+					}
+					return options;
+				}
+ 
+                function tirouFoto(fileURI){
+                   $scope.listaDeFotos.push(fileURI) //salva endereço da img na lista
+                   $scope.$apply()
+                }
+
+                function naoConseguiuTirarFoto(error){
+                    
+                }
+
+                function tenteTirarFoto(){
+                    navigator.camera.getPicture(tirouFoto, naoConseguiuTirarFoto);
+                }
+
+                function escolherFotoDaBiblioteca(){
+					var options = setOptions(Camera.PictureSourceType.SAVEDPHOTOALBUM)
+
+                    navigator.camera.getPicture(tirouFoto, naoConseguiuTirarFoto, options);
+                }
+
+				$scope.tenteTirarFoto = tenteTirarFoto 
+				$scope.escolherFotoDaBiblioteca = escolherFotoDaBiblioteca 
+				
+            })
+
+        </script>
+    </head>
+    <body>
+        <div ng-controller="FotosCtrl">
+			<h2><a href="index.html">Galerias</a> | Fotos </h2>
+            <p><button ng-click="tenteTirarFoto()">Tirar Foto</button></p>
+            <p><button ng-click="escolherFotoDaBiblioteca()">Escolher Foto da Biblioteca</button></p>
+            <h3>Lista de Fotos</h3>
+            <p ng-repeat="imgsrc in listaDeFotos">
+             <img ng-src="{{imgsrc}}" width="100%">
+             </p>
+  
+        </div>
+        <script type="text/javascript" src="cordova.js"></script>
+    </body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html ng-app="img-som-video-APP">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <script src="js/angular.min.js"></script>
+        <script src="js/viewport.js"></script>
+        <title>img-som-video</title>
+
+        <script>
+            var app = angular.module('img-som-video-APP',[])
+
+            app.controller('VideoCtrl', function($scope){
+                $scope.listaDeVideos=[];
+
+				// capture callback
+				function captureSuccess(mediaFiles) {
+						var path = mediaFiles[0].fullPath
+
+						$scope.listaDeVideos.push(path);
+						$scope.$apply()
+				};
+
+				// capture error callback
+				function captureError(error) {
+					console.log('Error code: ' + error.code, null, 'Capture Error');
+				}
+
+				// start audio capture
+				function gravarVideo(){
+					navigator.device.capture.captureVideo(captureSuccess, captureError);
+				}
+
+				$scope.gravarVideo = gravarVideo;
+				
+            })
+
+        </script>
+    </head>
+    <body>
+        <div ng-controller="VideoCtrl">
+			<h2><a href="index.html">Galerias</a> | Videos</h2>
+            <p><button ng-click="gravarVideo()">gravar vídeo</button></p>
+            <h3>Lista de vídeos</h3>
+            <video controls ng-repeat="videosrc in listaDeVideos" style="width:90%;border:1px solid black;">
+				<source ng-src="{{videosrc}}" >
+             </video>
+  
+        </div>
+        <script type="text/javascript" src="cordova.js"></script>
+    </body>
+</html>

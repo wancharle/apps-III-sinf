@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html ng-app="img-som-video-APP">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <script src="js/angular.min.js"></script>
+        <script src="js/viewport.js"></script>
+        <title>img-som-video</title>
+
+        <script>
+            var app = angular.module('img-som-video-APP',[])
+
+            app.controller('SonsCtrl', function($scope){
+                $scope.listaDeAudios=[];
+
+				// capture callback
+				function captureSuccess(mediaFiles) {
+						var path = mediaFiles[0].fullPath
+
+						$scope.listaDeAudios.push(path);
+						$scope.$apply()
+				};
+
+				// capture error callback
+				function captureError(error) {
+					console.log('Error code: ' + error.code, null, 'Capture Error');
+				}
+
+				// start audio capture
+				function gravarAudio(){
+					navigator.device.capture.captureAudio(captureSuccess, captureError);
+				}
+				$scope.gravarAudio = gravarAudio;
+				
+            })
+
+        </script>
+    </head>
+    <body>
+        <div ng-controller="SonsCtrl">
+			<h2><a href="index.html">Galerias</a> | Soms</h2>
+            <p><button ng-click="gravarAudio()">gravarAudio</button></p>
+            <h3>Lista de audios</h3>
+            <audio controls  ng-repeat="audiosrc in listaDeAudios">
+				<source ng-src="{{audiosrc}}" >
+             </audio>
+  
+        </div>
+        <script type="text/javascript" src="cordova.js"></script>
+    </body>
+</html>
