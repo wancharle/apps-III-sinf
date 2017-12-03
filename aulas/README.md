@@ -19,7 +19,7 @@ Acesso pelo lado servidor:
 * [Exemplo de aplicação NoSQL](banco-de-dados/servidor/nosql)
 
 Acesso pelo lado cliente:
-* [Acesso por localStorage](banco-de-dados/cliente/localStorage)
+<!-- * [Acesso por localStorage](banco-de-dados/cliente/localStorage) -->
 * [Acesso por cordova (SQL)](banco-de-dados/cliente/cordova)
 
 ## 3 - Aplicações Completas
