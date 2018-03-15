@@ -1,8 +1,3 @@
-#  III Seminário de Informática
-Códigos utilizados no mini-curso de desenvolvimento mobile do III Seminário de Informática do IFES campus Cachoeiro de Itapemirim.
-  
- [Roteiro de utilização do cordova](apps-III-sinf.md)
- 
 # Disciplina: Desenvolvimento para Dispositivos Móveis
 Material de aula, com códigos e projetos de exemplos, da disciplina Tópicos Especiais em Desenvolvimento para Dispositivos Móveis.
 
@@ -40,6 +35,10 @@ Acesso pelo lado cliente:
 * Leitura de códigos de barras e QRCode: [Aplicativo](aulas/cordova/codigos-de-barras)
 * Captura de Fotos, Audio e Vídeo: [Aplicativo](aulas/cordova/img-som-video)
 
+#  III Seminário de Informática
+Códigos utilizados no mini-curso de desenvolvimento mobile do III Seminário de Informática do IFES campus Cachoeiro de Itapemirim.
+  
+ [Roteiro de utilização do cordova](apps-III-sinf.md)
 
 ## Sites Úteis
 
