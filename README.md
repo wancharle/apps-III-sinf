@@ -1,7 +1,13 @@
-# Apps-III-sinf
+#  III Seminário de Informática
 Códigos utilizados no mini-curso de desenvolvimento mobile do III Seminário de Informática do IFES campus Cachoeiro de Itapemirim.
-Roteiro
-# Tópicos Especiais em Desenvolvimento para Dispositivos Móveis
+  
+ [Roteiro de utilização do cordova](apps-III-sinf.md)
+ 
+# Disciplina: Desenvolvimento para Dispositivos Móveis
+Material de aula, com códigos e projetos de exemplos, da disciplina Tópicos Especiais em Desenvolvimento para Dispositivos Móveis.
+
+[Material de aula](aulas/README.md)
+
 ## Sites Úteis
 
 Abaixo segue alguns sites úteis que podem ajudar no desenvolvimento de aplicativos com Apache Cordova:
